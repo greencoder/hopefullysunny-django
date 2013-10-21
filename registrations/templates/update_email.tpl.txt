@@ -9,3 +9,6 @@ Noe: If you didn't request the link, don't worry. You can safely ignore this ema
 Hope it's sunny where you are!
 
 -- The Hopefully Sunny Team
+
+
+If you don't want to receive any more emails from Hopefully Sunny, you can unsubscribe here: http://hopefullysunny.us{% url 'unsubscribe' registration.uuid %}
