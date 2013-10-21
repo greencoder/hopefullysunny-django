@@ -71,7 +71,7 @@ class RegistrationForm(forms.Form):
         
         try:
             r = Registration.objects.get(email=email_data)
-            if not r.email_is_confirmed:
+            if not r.status == 0:
                 return email_data
             else:
                 raise forms.ValidationError("That email address is already registered.")

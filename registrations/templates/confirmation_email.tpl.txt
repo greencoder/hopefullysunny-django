@@ -4,7 +4,7 @@ Thanks for signing up for Hopefully Sunny! I'm really excited to be sending you 
 
 Confirm Your Account: http://hopefullysunny.us{{ confirmation_link }}
 
-Let me know if I can ever help with anything, and thanks again for signing up.
+Let us know if we can ever help with anything, and thanks again for signing up.
 
 Hope it's sunny!
 
