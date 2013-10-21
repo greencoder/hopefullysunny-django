@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from vendor.django_beanstalkd import beanstalk_job
 
