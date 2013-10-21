@@ -3,7 +3,12 @@ import os
 import sys
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hopefullysunny.settings")
+    
+    if os.path.exists('PRODUCTION'):    
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hopefullysunny.production")
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'hopefullysunny.production'
+    else:
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hopefullysunny.settings")
 
     from django.core.management import execute_from_command_line
 
