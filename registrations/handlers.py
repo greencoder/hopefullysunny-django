@@ -86,10 +86,12 @@ def send_email_update_link(registration):
 
     html_message = render_to_string('update_email.tpl.html', {
         'update_link': reverse('update-data', kwargs={'uuid': registration.uuid}),
+        'registration': registration,        
     })
 
     text_message = render_to_string('update_email.tpl.txt', {
         'update_link': reverse('update-data', kwargs={'uuid': registration.uuid}),
+        'registration': registration,
     })
 
     success = send_mailgun_email('Hopefully Sunny Preferences Update', html_message, text_message,

@@ -69,7 +69,7 @@ def send_update_link(request):
         form = UpdateForm()
 
     return render_to_response('update_link_form.tpl.html', RequestContext(request, {
-        'form': form 
+        'form': form,
     }))
 
     
