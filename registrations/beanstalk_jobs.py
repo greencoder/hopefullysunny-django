@@ -31,7 +31,7 @@ def job_send_update_email_link(arg):
         return False
 
     success = send_email_update_link(registration)
-    log("job_send_update_email_link", "Sent email update link for %s" % registation.email)
+    log("job_send_update_email_link", "Sent email update link for %s" % registration.email)
     return success
 
 
