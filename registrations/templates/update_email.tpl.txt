@@ -7,4 +7,5 @@ http://hopefullysunny.us{{ update_link }}
 Noe: If you didn't request the link, don't worry. You can safely ignore this email and nothing will change.
 
 Hope it's sunny where you are!
+
 -- The Hopefully Sunny Team

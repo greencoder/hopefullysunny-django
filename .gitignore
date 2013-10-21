@@ -4,4 +4,5 @@
 local_settings.py
 hopefullysunny/production.py
 hopefullysunny/development.py
+beanstalk.log
 PRODUCTION

@@ -92,7 +92,7 @@ def send_email_update_link(registration):
         'update_link': reverse('update-data', kwargs={'uuid': registration.uuid}),
     })
 
-    success = send_mailgun_email('HopefullySunny Preferences Update', html_message, text_message,
+    success = send_mailgun_email('Hopefully Sunny Preferences Update', html_message, text_message,
         'Hopefully Sunny <weather@hopefullysunny.us>', [registration.email,])
     
     if success:
