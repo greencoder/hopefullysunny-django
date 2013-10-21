@@ -53,8 +53,8 @@ def send_mailgun_email(subject, html_message, text_message, from_addr, to_addr_l
               "to": to_addr_list,
               "h:Reply-To": "hopefullysunnyapp@gmail.com",
               "subject": subject,
-              "text": text_body,
-              "html": html_body,
+              "text": text_message,
+              "html": html_message,
         })
     if request.status_code == 200:
         return True
@@ -71,7 +71,7 @@ def send_email_confirmation(registration):
         'confirmation_link': reverse('signup-confirm', kwargs={'uuid': registration.uuid}),
     })
     
-    send_mailgun_email('Hopefully Sunny Email Confirmation', html_message, text_message, 
+    success = send_mailgun_email('Hopefully Sunny Email Confirmation', html_message, text_message, 
         'Hopefully Sunny <weather@hopefullysunny.us>', [registration.email,])
 
     if success:
