@@ -16,9 +16,9 @@ Forecast data provided by the National Weather Service: http://nws.noaa.gov
 
 -----
 
-You arere receiving this email because you subscribed to Hopefully Sunny. Thanks for being a subscriber!
+You are receiving this email because you subscribed to Hopefully Sunny. Thanks for being a subscriber!
 
-Have any feedback or questions? Email feedback@hopefullysunny.us
+Have any feedback or questions? Email hopefullysunnyapp@gmail.com
 
 Don't want to receive this anymore? Unsubscribe: http://hopefullysunny.us{% url 'unsubscribe' registration.uuid %}
 Need to change your location? Update your settings: http://hopefullysunny.us{% url 'update-data' registration.uuid %}

@@ -1,5 +1,3 @@
-from django.core import management
-
 from registrations.handlers import send_email_confirmation
 from registrations.handlers import send_email_update_link
 
@@ -20,5 +18,5 @@ geocode_registration.short_description = "Geocode the registration(s)"
 
 def send_forecast_email(modeladmin, request, queryset):
     for obj in queryset:
-        management.call_command('send_forecast_email', obj.email)
+        obj.fire_forecast_email_task()
 send_forecast_email.short_description = "Send forecast email(s)"

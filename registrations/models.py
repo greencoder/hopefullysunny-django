@@ -43,6 +43,9 @@ class Registration(models.Model):
     confirmation_email_sent = models.BooleanField(default=False)
     status = models.SmallIntegerField(choices=STATUS_CHOICES)
 
+    def fire_forecast_email_task(self):
+        client.call('forecasts.job_send_forecast_email', self.id)
+
     def fire_signup_email_task(self):
         client.call('registrations.job_send_email_confirmation', self.id) 
 

@@ -2,5 +2,6 @@
 *.pot
 *.pyc
 local_settings.py
-*production.py*
+hopefullysunny/production.py
+hopefullysunny/development.py
 PRODUCTION
