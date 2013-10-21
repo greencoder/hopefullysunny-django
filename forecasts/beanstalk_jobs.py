@@ -28,5 +28,5 @@ def job_send_forecast_email(arg):
         return False
 
     success = send_forecast_email(registration)
-    log("job_send_forecast_email_link", "Sent forecast email to %s" % registation.email)
+    log("job_send_forecast_email_link", "Sent forecast email to %s" % registration.email)
     return success
