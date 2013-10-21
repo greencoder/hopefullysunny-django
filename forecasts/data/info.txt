@@ -1,0 +1,14 @@
+24 Hourly:
+http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdBrowserClientByDay.php?whichClient=NDFDgenByDay&lat=39.7&lon=-104.75&Unit=e&format=24+hourly&numDays=3
+
+24 Hourly For Multiple Points:
+http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdBrowserClientByDay.php?whichClient=NDFDgenByDay&listLatLon=39.7,-104.75%2039.70,-104.80%2047.6,-122.30&Unit=e&format=24+hourly&numDays=3
+
+24 Hourly Multiple point lookup with just one point:
+http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdBrowserClientByDay.php?whichClient=NDFDgenByDay&listLatLon=39.7,-104.75&Unit=e&format=24+hourly&numDays=3
+
+JSON URL:
+http://forecast.weather.gov/MapClick.php?lat=39.72943&lon=-104.83191950000003&unit=0&lg=english&FcstType=json
+
+Forecast Generator:
+http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdXML.htm

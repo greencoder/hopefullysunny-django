@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Today's Weather</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body style="font-family: helvetica, arial, sans-serif; font-size: 14px;margin: 0; padding: 0;width: 100%">
+
+    <div style="margin: 15px;">
+      <h1>Your forecast for {{ registration.city }}, {{ registration.state }}</h1>
+
+      {% for forecast in forecasts %}
+        <div style="border-top: 1px solid #ddd; padding: 20px 0;">
+          <div style="margin-bottom: 15px;">
+            <strong>{{ forecast.date|date:"l" }}, {{ forecast.date|date:"F j" }}</strong>
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td style="font-size: 40px; padding-right: 20px; font-family: 'Segoe UI Symbol', Helvetica, Arial, 'Droid Sans Fallback', sans-serif;">
+                  {{ forecast.code }}
+                </td>
+                <td>
+                  {{ forecast.condition }}<br />
+                  Low - High: {{ forecast.min_temp }}° - {{ forecast.max_temp }}°<br />
+                  Chance of precipitation:
+                  {% ifequal forecast.pop_day forecast.pop_night %}
+                  {{ forecast.pop_day }}%
+                  {% else %}
+                  {{ forecast.pop_day }}% during the day, {{ forecast.pop_night }}% at night
+                  {% endifequal %}<br />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {% endfor %}
+    </div>
+
+    <p style="padding: 0 15px;"><em>Forecast data provided by the <a href="http://nws.noaa.gov">National Weather Service</a></em></p>
+
+    <div style="margin-top: 20px;padding: 15px; border-top: 1px solid #ddd; background: #eee;">
+      <p>
+        You are receiving this email because you subscribed to Hopefully Sunny. Thanks for being a subscriber!
+      </p>
+
+      <p>
+        You can <a href="http://hopefullysunny.us{% url 'update-data' registration.uuid %}">update your settings</a> or
+        <a href="http://hopefullysunny.us{% url 'unsubscribe' registration.uuid %}">unsubscribe</a> on our site.
+      </p>
+
+      <p>
+        Have any feedback or questions? Email us at <a href="mailto:feedback@hopefullysunny.us">feedback@hopefullysunny.us</a>
+      </p>
+    </div>
+  </body>
+</html>

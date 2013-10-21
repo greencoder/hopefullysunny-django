@@ -1,0 +1,10 @@
+Hi!
+
+You (or someone pretending to be you) requested a link to update your preferences at Hopefully Sunny. Use the link below to update your location:
+
+http://hopefullysunny.us{{ update_link }}
+
+Noe: If you didn't request the link, don't worry. You can safely ignore this email and nothing will change.
+
+Hope it's sunny where you are!
+-- The Hopefully Sunny Team

@@ -1,0 +1,11 @@
+Hi!
+
+Thanks for signing up for Hopefully Sunny! I'm really excited to be sending you the weather every morning. Unfortunately, there's just one more step for signup - I need you to click on the link below to confirm your account.
+
+Confirm Your Account: http://hopefullysunny.us{{ confirmation_link }}
+
+Let me know if I can ever help with anything, and thanks again for signing up!
+
+Hope it's sunny!
+
+-- The Hopefully Sunny Team

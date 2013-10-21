@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Update My Preferences{% endblock title %}
+
+{% block content %}
+
+
+<div style="width: 500px; margin: 0 auto;">
+
+	<form action="" method="POST" class="form-signup">
+
+		{% if form.errors %}
+			<div class="alert alert-danger">
+			{% if form.email.errors %}<p>{{ form.email.errors.as_text|cut:"* " }}</p>{% endif %}
+			</div>
+		{% endif %}
+
+		<h2>Send Me an Update Link</h2>
+
+		<span class="{% if form.email.errors %}has-error{% endif %}">{{ form.email }}</span>
+
+		<input type="submit" class="btn btn-lg btn-primary btn-block" value="Send Me a Link!">
+
+		{% csrf_token %}
+
+	</form>	
+</div>
+
+{% endblock content %}

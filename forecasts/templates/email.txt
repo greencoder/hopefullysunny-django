@@ -1,0 +1,24 @@
+Your forecast for {{ registration.city }}, {{ registration.state }}
+{% for forecast in forecasts %}
+{{ forecast.date|date:"l" }}, {{ forecast.date|date:"F j" }}
+{{ forecast.code }}  {{ forecast.condition }}
+Low - High: {{ forecast.min_temp }}° - {{ forecast.max_temp }}°
+Chance of precipitation: {% spaceless %}
+{% ifequal forecast.pop_day forecast.pop_night %}
+  {{ forecast.pop_day }}%
+  {% else %}
+  {{ forecast.pop_day }}% during the day, {{ forecast.pop_night }}% at night
+  {% endifequal %}
+{% endspaceless %}
+{% endfor %}
+
+Forecast data provided by the National Weather Service: http://nws.noaa.gov
+
+-----
+
+You arere receiving this email because you subscribed to Hopefully Sunny. Thanks for being a subscriber!
+
+Have any feedback or questions? Email feedback@hopefullysunny.us
+
+Don't want to receive this anymore? Unsubscribe: http://hopefullysunny.us{% url 'unsubscribe' registration.uuid %}
+Need to change your location? Update your settings: http://hopefullysunny.us{% url 'update-data' registration.uuid %}

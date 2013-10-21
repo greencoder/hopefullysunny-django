@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Your Subscription{% endblock title %}
+
+{% block content %}
+
+<div style="width: 500px; margin: 0 auto;">
+
+	<form action="" method="POST" class="form-signup">
+
+		{% if form.errors %}
+			<div class="alert alert-danger">
+			{% if form.zip_code.errors %}<p>{{ form.zip_code.errors.as_text|cut:"* " }}</p>{% endif %}	
+			</div>
+		{% endif %}
+
+		<h2>Update Your Preferences</h2>
+
+		<span class="{% if form.zip_code.errors %}has-error{% endif %}">{{ form.zip_code }}</span>
+
+		<input type="submit" class="btn btn-lg btn-primary btn-block" value="Update My Location!">
+
+		{% csrf_token %}
+
+	</form>	
+</div>
+
+{% endblock content %}

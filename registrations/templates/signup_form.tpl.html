@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock title %}
+
+{% block content %}
+
+<div style="width: 500px; margin: 0 auto;">
+
+	<form action="" method="POST" class="form-signup">
+
+		{% if form.errors %}
+			<div class="alert alert-danger">
+			{% if form.email.errors %}<p>{{ form.email.errors.as_text|cut:"* " }}</p>{% endif %}
+			{% if form.zip_code.errors %}<p>{{ form.zip_code.errors.as_text|cut:"* " }}</p>{% endif %}
+			</div>
+		{% endif %}
+
+		<h2>Signing Up is Easy</h2>
+
+		<span class="{% if form.email.errors %}has-error{% endif %}">{{ form.email }}</span>
+		<span class="{% if form.zip_code.errors %}has-error{% endif %}">{{ form.zip_code }}</span>
+
+		<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign Me Up!">
+
+		{% csrf_token %}
+
+		<p>Already signed up and want to <a href="{% url 'update' %}">update your preferences</a>?</p>
+
+	</form>	
+</div>
+
+{% endblock content %}

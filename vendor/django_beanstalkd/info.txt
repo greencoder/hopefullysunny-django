@@ -1,0 +1,1 @@
+https://github.com/last-partizan/django-beanstalkd
