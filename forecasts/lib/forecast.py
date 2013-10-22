@@ -107,7 +107,7 @@ class Forecast():
         url  = "http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdBrowserClientByDay.php"
         url += "?whichClient=NDFDgenByDay&lat=%.3f&lon=%.3f&Unit=e&format=24+hourly&numDays=4" % (latitude, longitude)
 
-        request = requests.get(url)
+        request = requests.get(url, timeout=10.0)
         tree = ET.parse(StringIO.StringIO(request.text))
     
         time_layouts = self._parse_time_layouts(tree)
