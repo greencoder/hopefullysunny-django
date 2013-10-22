@@ -1,4 +1,5 @@
 import datetime
+import pytz
 
 from django.conf import settings
 from vendor.django_beanstalkd import beanstalk_job
@@ -12,7 +13,7 @@ beanstalk_options = {
 
 def log(job_name, message):
     
-    log_msg = "%s\t%s\t%s" % (datetime.datetime.now(), job_name, message)
+    log_msg = "%s\t%s\t%s" % (datetime.datetime.utcnow(), job_name, message)
     print log_msg
 
     f = open(settings.BEANSTALK_LOG_FILE, 'a')
