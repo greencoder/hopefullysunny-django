@@ -1,4 +1,5 @@
 import datetime
+import pytz
 
 from django.conf import settings
 from vendor.django_beanstalkd import beanstalk_job
@@ -13,8 +14,8 @@ beanstalk_options = {
 }
 
 def log(job_name, message):
-    
-    log_msg = "%s\t%s\t%s" % (datetime.datetime.now(), job_name, message)
+
+    log_msg = "%s\t%s\t%s" % (datetime.datetime.utcnow(), job_name, message)
     print log_msg
 
     f = open(settings.BEANSTALK_LOG_FILE, 'a')
@@ -45,7 +46,7 @@ def job_geocode_zip(arg):
         return False
 
     success = geocode_zip(registration)
-    log("job_geocode_zip", "Geocoded zip %s" % registration.zip_code)
+    log("job_geocode_zip", "\t\tGeocoded zip %s" % registration.zip_code)
     return success
 
 
