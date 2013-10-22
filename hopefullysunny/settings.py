@@ -151,9 +151,7 @@ LOGGING = {
     }
 }
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+# Beanstalk-related settings
 BEANSTALK_SERVER = '127.0.0.1:11300'
 BEANSTALK_LOG_FILE = os.path.join(SITE_ROOT, 'beanstalkd.log')
-
+BEANSTALK_JOB_FAILED_RETRY = 0
