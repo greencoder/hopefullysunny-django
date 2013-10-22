@@ -1,12 +1,11 @@
 import uuid
 import datetime
+import pytz
 
 from django.db import models
 from django.core.mail import send_mail
 
-from vendor.django_beanstalkd import BeanstalkClient
-
-client = BeanstalkClient()
+from registrations import handlers
 
 REGION_CHOICES = (
     ('0', 'Unknown'),
@@ -43,17 +42,22 @@ class Registration(models.Model):
     confirmation_email_sent = models.BooleanField(default=False)
     status = models.SmallIntegerField(choices=STATUS_CHOICES)
 
-    def fire_forecast_email_task(self):
-        client.call('forecasts.job_send_forecast_email', self.id)
+    def send_signup_email(self):
+        success = handlers.send_confirmation_email(self)
+        return success
 
-    def fire_signup_email_task(self):
-        client.call('registrations.job_send_email_confirmation', self.id) 
+    def send_update_email(self):
+        success = handlers.send_update_link_email(self)
+        return success
 
-    def fire_update_email_task(self):
-        client.call('registrations.job_send_update_email_link', self.id) 
+    def geocode_registration(self):
+        success = handlers.geocode_registration(self)
+        return success
 
-    def fire_geocode_task(self):
-        client.call('registrations.job_geocode_zip', self.id)        
+    @classmethod
+    def validate_email(self, email):
+        success = handlers.validate_email(email)
+        return success
         
     @classmethod
     def unsubscribe(self, uuid):
@@ -77,7 +81,7 @@ class Registration(models.Model):
             else:
                 r.status = 2
             
-            r.confirmed_at = datetime.datetime.now()
+            r.confirmed_at = datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
             r.save()
             return r
         except Registration.DoesNotExist:
@@ -91,7 +95,7 @@ class Registration(models.Model):
             # are probably just trying to resend the confirmation.
             if r.status == 0:
                 r.zip_code = zip_code
-                r.updated_at = datetime.datetime.now()
+                r.updated_at = datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
                 r.save()
                 return r
             else:
@@ -101,8 +105,8 @@ class Registration(models.Model):
                 email = email,
                 zip_code = zip_code,
                 uuid = uuid.uuid1().hex,
-                created_at = datetime.datetime.now(),
-                updated_at = datetime.datetime.now(),
+                created_at = datetime.datetime.utcnow().replace(tzinfo=pytz.utc),
+                updated_at = datetime.datetime.utcnow().replace(tzinfo=pytz.utc),
                 status = 0,
             )
             return r

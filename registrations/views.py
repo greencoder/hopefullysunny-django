@@ -13,13 +13,17 @@ def signup(request):
 
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            registration = Registration.signup(
-                form.cleaned_data['email'], 
-                form.cleaned_data['zip_code'],
-            )
-            if registration:
-                registration.fire_signup_email_task()
-                return redirect('signup-sent')
+            
+            email = form.cleaned_data['email']
+            zip_code = form.cleaned_data['zip_code']
+            
+            if Registration.validate_email(email):            
+                registration = Registration.signup(email, zip_code)            
+                if registration:
+                    registration.send_signup_email()
+                    return redirect('signup-sent')
+                else:
+                    return redirect('signup-failure')
             else:
                 return redirect('signup-failure')
 
@@ -35,7 +39,7 @@ def signup(request):
 def confirm_email(request, uuid):
     registration = Registration.confirm_email_address(uuid)
     if registration:
-        registration.fire_geocode_task()
+        registration.geocode_registration()
         # If they are on the waiting list, tell them
         if registration.status == 2:
             return render_to_response("confirmation_waiting_list.tpl.html")
@@ -63,7 +67,7 @@ def send_update_link(request):
         form = UpdateForm(request.POST)        
         if form.is_valid():
             registration = Registration.objects.get(email=form.cleaned_data['email'])
-            registration.fire_update_email_task()
+            registration.send_udpate_email()
             return redirect('update-sent')
     else:
         form = UpdateForm()

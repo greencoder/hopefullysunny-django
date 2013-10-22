@@ -48,20 +48,29 @@ region_ids = {
 
 def send_mailgun_email(subject, html_message, text_message, from_addr, to_addr_list):
     request = requests.post(settings.MAILGUN_URL, auth=("api", settings.MAILGUN_API_KEY), 
-        data={
+        data = {
             "from": from_addr,
               "to": to_addr_list,
               "h:Reply-To": "hopefullysunnyapp@gmail.com",
               "subject": subject,
               "text": text_message,
               "html": html_message,
-        })
+        }, timeout=5.0)
     if request.status_code == 200:
         return True
     else:
         return False
 
-def send_email_confirmation(registration):
+def validate_email(email):
+    request = requests.get(
+        "https://api.mailgun.net/v2/address/validate",
+        auth=("api", settings.MAILGUN_PUBLIC_API_KEY),
+        params={"address": "foo@mailgun.net"}, 
+        timeout=5.0,
+    )
+    return request.ok
+
+def send_confirmation_email(registration):
     
     html_message = render_to_string('confirmation_email.tpl.html', {
         'confirmation_link': reverse('signup-confirm', kwargs={'uuid': registration.uuid}),
@@ -82,7 +91,7 @@ def send_email_confirmation(registration):
         return False
 
 
-def send_email_update_link(registration): 
+def send_update_link_email(registration): 
 
     html_message = render_to_string('update_email.tpl.html', {
         'update_link': reverse('update-data', kwargs={'uuid': registration.uuid}),
@@ -97,31 +106,27 @@ def send_email_update_link(registration):
     success = send_mailgun_email('Hopefully Sunny Preferences Update', html_message, text_message,
         'Hopefully Sunny <weather@hopefullysunny.us>', [registration.email,])
     
-    if success:
-        return True
-    else:
-        return False
+    return success
 
-
-def geocode_zip(registration):
+def geocode_registration(registration):
 
     request = requests.get('http://geocoder.us/service/json/geocode?zip=%s' % registration.zip_code)
 
-    if request.ok:
+    if request.status_code == 200:
+
         data = request.json()[0]
         registration.state = data['state']
         registration.city = data['city']
         registration.latitude = data['lat']
         registration.longitude = data['long']
-        
+
         try:
             region = regions_by_state[data['state']]
             registration.region = region_ids[region]
         except KeyError:
             registration.region = 0 # Unknown
-        
+
         registration.save()
         return True
     else:
-        print "Error geocoding zip code: %s" % registration.zip_code
         return False

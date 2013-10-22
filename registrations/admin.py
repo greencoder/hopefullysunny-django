@@ -1,13 +1,14 @@
 from django.contrib import admin
 
 from registrations.models import Registration
+
 from registrations.actions import resend_confirmation_email
 from registrations.actions import send_update_link
 from registrations.actions import geocode_registration
-from registrations.actions import send_forecast_email
 
 class RegistrationAdmin(admin.ModelAdmin):
-    actions = [resend_confirmation_email, send_update_link, geocode_registration, send_forecast_email]
+
+    actions = [resend_confirmation_email, send_update_link, geocode_registration]
     list_display = ('email', 'confirmation_email_sent', 'status', 'city', 'state', 'zip_code', 'region')
     list_filter = ('region',)
     search_fields = ('email',)
