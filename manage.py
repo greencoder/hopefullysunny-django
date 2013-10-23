@@ -3,8 +3,8 @@ import os
 import sys
 
 if __name__ == "__main__":
-    
-    if os.path.exists('PRODUCTION'):    
+
+    if os.path.exists('PRODUCTION'):
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hopefullysunny.production")
         os.environ['DJANGO_SETTINGS_MODULE'] = 'hopefullysunny.production'
     else:

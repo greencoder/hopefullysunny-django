@@ -1,10 +1,9 @@
 Django==1.5.4
-PyYAML==3.10
 argparse==1.2.1
-beanstalkc==0.3.0
 dateutils==0.6.6
 psycopg2==2.5.1
 python-dateutil==2.1
+python-memcached==1.53
 pytz==2013.7
 requests==2.0.0
 six==1.4.1
