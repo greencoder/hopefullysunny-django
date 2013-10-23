@@ -1,3 +1,4 @@
+import sys
 from optparse import make_option
 import requests
 
@@ -8,13 +9,12 @@ from forecasts.handlers import Forecast
 
 class Command(BaseCommand):
 
-    option_list = BaseCommand.option_list + (
-        make_option('--zip', type="string", dest='zip_code', default=None, help='Zip Code'),
-    )
-
     def handle(self, *args, **options):
 
-        request = requests.get('http://geocoder.us/service/json/geocode?zip=%s' % options['zip_code'])
+        if not len(args) == 1:
+            sys.exit("You must specify a zip code.")
+
+        request = requests.get('http://geocoder.us/service/json/geocode?zip=%s' % args[0])
 
         if request.ok:
             data = request.json()[0]
