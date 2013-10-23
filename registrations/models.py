@@ -73,14 +73,7 @@ class Registration(models.Model):
         try:
             confirmed_count = Registration.objects.filter(status=1).count()
             r = Registration.objects.get(uuid=uuid)
-            
-            # We have to limit the count to 1500 right now. If we are at 
-            # capacity, put them on the waiting list.
-            if confirmed_count < 1500:
-                r.status = 1
-            else:
-                r.status = 2
-            
+            r.status = 1
             r.confirmed_at = datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
             r.save()
             return r

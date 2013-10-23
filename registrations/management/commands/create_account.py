@@ -1,12 +1,12 @@
 import datetime
 import sys
+import pytz
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-from forecasts.lib.forecast import Forecast
 from registrations.models import Registration
-from registrations.handlers import geocode_zip
+from registrations import handlers
 
 class Command(BaseCommand):
 
@@ -23,12 +23,12 @@ class Command(BaseCommand):
         if not registration:
             sys.exit("Error: that account is already registered.")
 
-        geocode_zip(registration)
+        handlers.geocode_registration(registration)
         
         registration.confirmation_email_sent = True
         registration.email_is_confirmed = True
-        registration.confirmed_at = datetime.datetime.now()
-        registration.updated_at = datetime.datetime.now()
+        registration.confirmed_at = datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
+        registration.updated_at = datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
         registration.save()
         
         print "Done."

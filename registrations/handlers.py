@@ -126,6 +126,7 @@ def geocode_registration(registration):
         except KeyError:
             registration.region = 0 # Unknown
 
+        registration.status = 1 # Confirmed
         registration.save()
         return True
     else:

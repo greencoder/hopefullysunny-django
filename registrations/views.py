@@ -40,11 +40,7 @@ def confirm_email(request, uuid):
     registration = Registration.confirm_email_address(uuid)
     if registration:
         registration.geocode_registration()
-        # If they are on the waiting list, tell them
-        if registration.status == 2:
-            return render_to_response("confirmation_waiting_list.tpl.html")
-        else:            
-            return render_to_response("confirmation_success.tpl.html")
+        return render_to_response("confirmation_success.tpl.html")
     else:
         return render_to_response("confirmation_failure.tpl.html")
 
