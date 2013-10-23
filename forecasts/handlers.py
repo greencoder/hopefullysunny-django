@@ -24,9 +24,7 @@ def send_mailgun_email(subject, html_message, text_message, from_addr, to_addr_l
     else:
         return False
 
-def send_forecast_email(registration): 
-
-    forecasts_list = Forecast.get_forecast(registration.latitude, registration.longitude)
+def send_forecast_email(registration, forecasts_list): 
 
     text_message = render_to_string("email.txt", {
         "forecasts": forecasts_list,
