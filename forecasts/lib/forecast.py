@@ -51,7 +51,7 @@ class Forecast():
         return time_layouts
 
     @classmethod
-    def _parse_temperatures_for_type(self, element, temp_type):                
+    def _parse_temperatures_for_type(self, element, temp_type):
         for tmp_el in element.iter(tag='temperature'):
             if tmp_el.attrib['type'] != temp_type:
                 continue

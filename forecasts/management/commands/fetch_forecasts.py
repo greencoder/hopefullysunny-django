@@ -19,9 +19,10 @@ class Command(BaseCommand):
         latlong_list = []
         for registration in Registration.objects.filter(status=1):
             # Check the cache to see if this lat/long has already been fetched.
-            cache_key = "%s,%s" % (registration.latitude, registration.longitude)
+            cache_key = "%.2f,%.2f" % (registration.latitude, registration.longitude)
             entry = cache.get(cache_key)
-            if not entry:            
+            if not entry:
+                print "Location not in cache. Adding to lookup list: %s" % cache_key
                 latlong = (registration.latitude, registration.longitude)
                 latlong_list.append(latlong)
         
