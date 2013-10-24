@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 
 from registrations.models import Registration
 from registrations.forms import RegistrationForm, UpdateForm, UpdateDataForm
@@ -17,15 +18,15 @@ def signup(request):
             email = form.cleaned_data['email']
             zip_code = form.cleaned_data['zip_code']
             
-            if Registration.validate_email(email):            
-                registration = Registration.signup(email, zip_code)            
+            if Registration.validate_email(email):
+                registration = Registration.signup(email, zip_code)
                 if registration:
                     registration.send_signup_email()
                     return redirect('signup-sent')
                 else:
-                    return redirect('signup-failure')
+                    return redirect(reverse('signup-failure') + "?signup_fail")
             else:
-                return redirect('signup-failure')
+                return redirect(reverse('signup-failure') + "?validate_fail")
 
     # Method was not post, so we need to show the form
     else:
