@@ -37,8 +37,8 @@ def send_forecast_email(registration, forecasts_list):
     })
     
     today = forecasts_list[0]
-    subject = u"Today in %s, %s: %s  %.0f° - %.0f°, %s" % (registration.city, registration.state, 
-        today['code'], today['min_temp'], today['max_temp'], today['condition'])
+    subject = u"%s  %.0f° - %.0f°, %s" % (today['code'], today['min_temp'], 
+        today['max_temp'], today['condition'])
 
     success = send_mailgun_email(subject, html_message, text_message,
         'Hopefully Sunny <weather@hopefullysunny.us>', [registration.email,])
