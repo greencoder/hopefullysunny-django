@@ -109,14 +109,14 @@ class Forecast():
             return time_layout_key, values
     
     @classmethod
-    def get_forecast(self, lat, lng):
+    def get_forecast(self, lat, lng, debug=False):
         """ A convenience method to make it simpler to get forecast for one location """
         locations = [(lat,lng),]
-        location_forecasts = self.get_multiple_forecasts(locations)
+        location_forecasts = self.get_multiple_forecasts(locations, debug=debug)
         return location_forecasts[0]['forecasts']
     
     @classmethod
-    def get_multiple_forecasts(self, latlong_list, metric=False):
+    def get_multiple_forecasts(self, latlong_list, debug=False):
     
         # This nasty bit of logic takes each of the (lat,lng) tuples, combines 
         # them into a string with a comma, then joins them with a %20 (encoded space)
@@ -125,6 +125,8 @@ class Forecast():
         url  = "http://graphical.weather.gov/xml/sample_products/browser_interface/ndfdBrowserClientByDay.php"
         url += "?whichClient=NDFDgenByDay&listLatLon=%s" % latlong_params
         url += "&Unit=e&format=24+hourly&numDays=4"
+        
+        if debug: print url
 
         request = requests.get(url, timeout=30.0)
         tree = ET.parse(StringIO.StringIO(request.text))

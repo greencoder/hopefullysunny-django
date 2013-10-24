@@ -12,11 +12,12 @@ class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--lat', type="float", dest='lat', default=None, help='Latitude'),
         make_option('--lng', type="float", dest='lng', default=None, help='Latitude'),
+        make_option('--debug', action='store_true', dest='debug', help="Show Debug Messages"),
     )
 
     def handle(self, *args, **options):
 
-        forecasts_list = Forecast.get_forecast(options['lat'], options['lng'])
+        forecasts_list = Forecast.get_forecast(options['lat'], options['lng'], debug=options['debug'])
         
         for forecast in forecasts_list:
             print "%s\t%s  %.0f%s-%.0f%s\t%s" % (
