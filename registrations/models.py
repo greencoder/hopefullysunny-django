@@ -19,7 +19,6 @@ REGION_CHOICES = (
 STATUS_CHOICES = (
     (0, 'Unconfirmed'),
     (1, 'Confirmed'),
-    (2, 'Waiting List'),
 )
 
 class Registration(models.Model):
