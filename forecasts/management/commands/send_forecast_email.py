@@ -23,7 +23,7 @@ class Command(BaseCommand):
         except Registration.DoesNotExist:
             sys.exit("Registration not found.")
 
-        cache_key = "%s,%s" % (registration.latitude, registration.longitude)
+        cache_key = "%.2f,%.2f" % (registration.latitude, registration.longitude)
         forecasts_list = cache.get(cache_key)
 
         # If we don't have a value, it was not found in the cache. Look up and cache it.
