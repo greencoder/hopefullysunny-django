@@ -13,11 +13,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        for registration in Registration.objects.filter(email=email, status=1):
+        for registration in Registration.objects.filter(status=1, latitude__isnull=False,
+            longitude__isnull=False):
 
-            cache_key = "%s,%s" % (registration.latitude, registration.longitude)
+            cache_key = "%.2f,%.2f" % (registration.latitude, registration.longitude)
             forecasts_list = cache.get(cache_key)
-
+            
             # If we don't have a value, it was not found in the cache. Look up and cache it.
             if not forecasts_list:
 
@@ -26,6 +27,7 @@ class Command(BaseCommand):
                 cache.set(cache_key, forecasts_list, 3600)
 
                 success = handlers.send_forecast_email(registration, forecasts_list)
+
                 if success:
                     print "Forecast Email Sent: %s" % registration.email
                 else:
