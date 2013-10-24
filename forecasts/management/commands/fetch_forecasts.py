@@ -26,8 +26,8 @@ class Command(BaseCommand):
                 latlong_list.append(latlong)
         
         # Now that we have a list of all the lat/long tuples we need to look up, 
-        # let's cut them into chunks of 10
-        for chunk in self.chunks(latlong_list, 25):        
+        # let's cut them into chunks of 200 (the max the service allows)
+        for chunk in self.chunks(latlong_list, 200):        
             location_forecasts = Forecast.get_multiple_forecasts(chunk)
             for location in location_forecasts:
                 latlong = location['location']
