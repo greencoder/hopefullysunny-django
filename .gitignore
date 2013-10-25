@@ -2,6 +2,7 @@
 *.log
 *.pot
 *.pyc
+tasklog.txt
 local_settings.py
 hopefullysunny/production.py
 hopefullysunny/development.py
