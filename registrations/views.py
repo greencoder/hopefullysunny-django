@@ -61,10 +61,10 @@ def unsubscribe(request, uuid):
 def send_update_link(request):
 
     if request.method == "POST":
-        form = UpdateForm(request.POST)        
+        form = UpdateForm(request.POST)
         if form.is_valid():
             registration = Registration.objects.get(email=form.cleaned_data['email'])
-            registration.send_udpate_email()
+            registration.send_update_email()
             return redirect('update-sent')
     else:
         form = UpdateForm()

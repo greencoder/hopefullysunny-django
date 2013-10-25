@@ -49,19 +49,19 @@ def send_confirmation_email(registration):
         return False
 
 
-def send_update_link_email(registration): 
-
-    html_message = render_to_string('update_email.tpl.html', {
-        'update_link': reverse('update-data', kwargs={'uuid': registration.uuid}),
-        'registration': registration,        
-    })
-
-    text_message = render_to_string('update_email.tpl.txt', {
-        'update_link': reverse('update-data', kwargs={'uuid': registration.uuid}),
-        'registration': registration,
-    })
-
-    success = send_mailgun_email('Hopefully Sunny Preferences Update', html_message, text_message,
-        'Hopefully Sunny <weather@hopefullysunny.us>', [registration.email,])
-    
-    return success
+# def send_update_link_email(registration): 
+# 
+#     html_message = render_to_string('update_email.tpl.html', {
+#         'update_link': reverse('update-data', kwargs={'uuid': registration.uuid}),
+#         'registration': registration,        
+#     })
+# 
+#     text_message = render_to_string('update_email.tpl.txt', {
+#         'update_link': reverse('update-data', kwargs={'uuid': registration.uuid}),
+#         'registration': registration,
+#     })
+# 
+#     success = send_mailgun_email('Hopefully Sunny Preferences Update', html_message, text_message,
+#         'Hopefully Sunny <weather@hopefullysunny.us>', [registration.email,])
+# 
+#     return success

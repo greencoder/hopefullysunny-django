@@ -51,8 +51,7 @@ class Registration(models.Model):
         return success
 
     def send_update_email(self):
-        success = handlers.send_update_link_email(self)
-        return success
+        task_socket.send_json({'task': 'send_update_link_email', 'kwargs': {'id': self.id}})
 
     def fire_geocode_registration_task(self):
         task_socket.send_json({'task': 'geocode_registration', 'kwargs': {'id': self.id}})
