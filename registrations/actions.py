@@ -10,5 +10,5 @@ send_update_link.short_description = "Send update link email(s)"
 
 def geocode_registration(modeladmin, request, queryset):
     for obj in queryset:
-        obj.geocode_registration()
+        obj.fire_geocode_registration_task()
 geocode_registration.short_description = "Geocode the registration(s)"
