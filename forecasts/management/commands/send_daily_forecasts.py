@@ -21,14 +21,13 @@ class Command(BaseCommand):
             
             # If we don't have a value, it was not found in the cache. Look up and cache it.
             if not forecasts_list:
-
                 forecasts_list = Forecast.get_forecast(registration.latitude, registration.longitude)
-                print "Caching the fetched forecasts"
+                print "Caching the fetched forecasts for %s" % cache_key
                 cache.set(cache_key, forecasts_list, 3600)
 
-                success = handlers.send_forecast_email(registration, forecasts_list)
+            success = handlers.send_forecast_email(registration, forecasts_list)
 
-                if success:
-                    print "Forecast Email Sent: %s" % registration.email
-                else:
-                    print "Error sending email."
+            if success:
+                print "Forecast Email Sent: %s" % registration.email
+            else:
+                print "Error sending email."
