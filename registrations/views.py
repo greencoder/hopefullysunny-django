@@ -86,7 +86,7 @@ def update_registration_data(request, uuid):
         if form.is_valid():
             registration.zip_code = form.cleaned_data['zip_code']
             registration.save()
-            registration.fire_geocode_task()
+            registration.fire_geocode_registration_task()
             return redirect('update-success')
     else:
         form = UpdateDataForm()
