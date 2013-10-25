@@ -1,6 +1,7 @@
 import uuid
 import datetime
 import pytz
+import zmq
 
 from django.db import models
 from django.core.mail import send_mail
@@ -20,6 +21,10 @@ STATUS_CHOICES = (
     (0, 'Unconfirmed'),
     (1, 'Confirmed'),
 )
+
+ctx = zmq.Context() 
+task_socket = ctx.socket(zmq.PUSH) 
+task_socket.connect('tcp://127.0.0.1:7002')
 
 class Registration(models.Model):
 
@@ -49,9 +54,8 @@ class Registration(models.Model):
         success = handlers.send_update_link_email(self)
         return success
 
-    def geocode_registration(self):
-        success = handlers.geocode_registration(self)
-        return success
+    def fire_geocode_registration_task(self):
+        task_socket.send_json({'task': 'geocode_registration', 'kwargs': {'id': self.id}})
 
     @classmethod
     def validate_email(self, email):

@@ -40,7 +40,7 @@ def signup(request):
 def confirm_email(request, uuid):
     registration = Registration.confirm_email_address(uuid)
     if registration:
-        registration.geocode_registration()
+        registration.fire_geocode_registration_task()
         return render_to_response("confirmation_success.tpl.html")
     else:
         return render_to_response("confirmation_failure.tpl.html")

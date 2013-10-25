@@ -1,0 +1,6 @@
+2013-10-24 19:19:30.755860+00:00	Registration Worker ZMQ Socket Bound to 7002
+2013-10-24 19:19:51.572006+00:00	Got task 'geocode_registration' with kwargs: {u'id': 51}
+2013-10-24 19:19:53.099555+00:00	Task Result: True
+2013-10-24 19:20:26.814329+00:00	Registration Worker ZMQ Socket Bound to 7002
+2013-10-24 19:20:31.032161+00:00	Got task 'geocode_registration' with kwargs: {u'id': 51}
+2013-10-24 19:20:32.248574+00:00	Task 'geocode_registration' result: True

@@ -156,3 +156,5 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
+
+TASK_LOG_PATH = os.path.join(SITE_ROOT, 'tasklog.txt')
