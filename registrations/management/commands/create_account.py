@@ -23,7 +23,8 @@ class Command(BaseCommand):
         if not registration:
             sys.exit("Error: that account is already registered.")
 
-        handlers.geocode_registration(registration)
+        #handlers.geocode_registration(registration)
+        registration.fire_geocode_registration_task()
         
         registration.confirmation_email_sent = True
         registration.email_is_confirmed = True
