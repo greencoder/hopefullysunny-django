@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import datetime
 
 from django.core.management.base import BaseCommand, CommandError
 from django.core.cache import cache
@@ -12,6 +13,8 @@ from forecasts.lib.forecast import Forecast
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
+
+        print "Starting Daily Email Run: %s" % datetime.datetime.now()
 
         for registration in Registration.objects.filter(status=1, latitude__isnull=False,
             longitude__isnull=False):

@@ -1,4 +1,5 @@
 import sys
+import datetime
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
@@ -15,6 +16,8 @@ class Command(BaseCommand):
             yield list[i:i+chunk_size]
 
     def handle(self, *args, **options):
+
+        print "Fetching Forecasts: %s" % datetime.datetime.now()
 
         latlong_list = []
         for registration in Registration.objects.filter(status=1):
