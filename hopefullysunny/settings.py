@@ -158,4 +158,4 @@ CACHES = {
     }
 }
 
-TASK_LOG_PATH = os.path.join(SITE_ROOT, 'tasklog.txt')
+TASK_LOG_PATH = os.path.join(SITE_ROOT, 'logs/tasklog.txt')
