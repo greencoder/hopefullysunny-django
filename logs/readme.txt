@@ -1,0 +1,1 @@
+This is the directory that logs files will be put into.
