@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'registrations',
     'forecasts',
+    'geocoder',
 )
 
 # A sample logging configuration. The only tangible logging

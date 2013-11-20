@@ -1,10 +1,14 @@
 import requests
+import datetime
+import pytz
+import sys
 
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.template.loader import render_to_string
 
 from registrations.models import Registration
+from geocoder.models import Zipcode
 
 regions_by_state = {
     'AL': 'Central',    'AK': 'Pacific',
@@ -52,7 +56,7 @@ def log(message):
     f = open(settings.TASK_LOG_PATH, 'a')
     now = datetime.datetime.utcnow().replace(tzinfo=pytz.utc)
     log_message = "%s\t%s\n" % (now, message)
-    self.stdout.write(log_message)
+    sys.stdout.write(log_message)
     f.write(log_message)
     f.close()
 
@@ -64,29 +68,29 @@ def geocode_registration(id):
         log("Task 'geocode_registration' could not find registration with ID %s" % id)
         return False
 
-    request = requests.get('http://geocoder.us/service/json/geocode?zip=%s' % registration.zip_code)
-
-    if request.status_code == 200:
-
-        data = request.json()[0]
-        registration.state = data['state']
-        registration.city = data['city']
-        registration.latitude = data['lat']
-        registration.longitude = data['long']
-
-        try:
-            region = regions_by_state[data['state']]
-            registration.region = region_ids[region]
-        except KeyError:
-            registration.region = 0 # Unknown
-
-        registration.status = 1 # Confirmed
-        registration.save()
-        return True
-
-    else:
-        log("Task 'geocode_registration' got a non-200 response from geocoder.us for registration ID: %s" % id)
+    try:
+        zipcode = Zipcode.objects.get(postal_code=registration.zip_code)
+    except Zipcode.DoesNotExist:
+        log("Task 'geocode_registration' could not find zip code %s" % registration.zip_code)
         return False
+
+    try:
+        region = regions_by_state[zipcode.admin_code1]
+        region_id = region_ids[region]
+    except KeyError:
+        region_id = None
+        log("Task 'geocode_registration' could not identify region for state %s" % zipcode.admin_code1)
+
+    registration.city = zipcode.place_name
+    registration.state = zipcode.admin_code1
+    registration.latitude = zipcode.latitude
+    registration.longitude = zipcode.longitude
+    registration.status = 1 # Confirmed
+    registration.region = region_id
+    registration.save()
+
+    log("Task 'geocode_registration' located zip code %s" % registration.zip_code)
+    return True
 
 def send_mailgun_email(subject, html_message, text_message, from_addr, to_addr_list):
     request = requests.post(settings.MAILGUN_URL, auth=("api", settings.MAILGUN_API_KEY),
