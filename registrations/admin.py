@@ -9,7 +9,7 @@ from registrations.actions import geocode_registration
 class RegistrationAdmin(admin.ModelAdmin):
 
     actions = [resend_confirmation_email, send_update_link, geocode_registration]
-    list_display = ('email', 'confirmation_email_sent', 'status', 'city', 'state', 'zip_code', 'region')
+    list_display = ('email', 'confirmation_email_sent', 'status', 'city', 'state_abbr', 'zip_code', 'region')
     list_filter = ('region',)
     search_fields = ('email',)
 
@@ -21,7 +21,7 @@ class RegistrationAdmin(admin.ModelAdmin):
             'fields': ('confirmed_at','cancelled_at','confirmation_email_sent'),
         }),
         ('Location Information', {
-            'fields': ('latitude','longitude','zip_code','city','state', 'region'),
+            'fields': ('latitude','longitude','zip_code','city','state','state_abbr','region'),
         }),
     )
 

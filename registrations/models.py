@@ -35,7 +35,8 @@ class Registration(models.Model):
     longitude = models.FloatField(blank=True, null=True)
     zip_code = models.CharField(max_length=11, blank=True)
     city = models.CharField(max_length=255, blank=True)
-    state = models.CharField(max_length=5, blank=True)
+    state = models.CharField(max_length=255, blank=True)
+    state_abbr = models.CharField(max_length=5, blank=True)
     region = models.CharField(max_length=1, choices=REGION_CHOICES, blank=True)
 
     created_at = models.DateTimeField()

@@ -1,4 +1,4 @@
-Your forecast for {{ registration.city }}, {{ registration.state }}
+Your forecast for {{ registration.city }}, {{ registration.state|default:registration.state_abbr }}
 {% for forecast in forecasts %}
 {{ forecast.date|date:"l" }}, {{ forecast.date|date:"F j" }}
 {{ forecast.code }}  {{ forecast.condition }}

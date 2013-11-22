@@ -82,7 +82,8 @@ def geocode_registration(id):
         log("Task 'geocode_registration' could not identify region for state %s" % zipcode.admin_code1)
 
     registration.city = zipcode.place_name
-    registration.state = zipcode.admin_code1
+    registration.state_abbr = zipcode.admin_code1
+    registration.state = zipcode.admin_name1
     registration.latitude = zipcode.latitude
     registration.longitude = zipcode.longitude
     registration.status = 1 # Confirmed
