@@ -8,11 +8,11 @@
   <!-- Jumbotron -->
   <div class="jumbotron">
 
-    <img src="{% static "images/hs_logo.png" %}" width="300" />
+    <img id="main-logo" src="{% static "images/hs_logo.png" %}" width="300" />
     <p class="lead">Get a beautiful weather forecast delivered to your inbox every morning.</p>
 
     <div class="container">
-      <div class="panel panel-default hidden-xs">
+      <div class="panel panel-default">
         <div class="panel-body">
 
 		{% if form.errors %}
@@ -125,12 +125,12 @@
           <h1 class="text-center">Our Partners</h1>
           <p>This project would not be possible without the gracious donation of services by our partners who have provided hosting, bandwidth, and email sending to this open-source project.</p>
           <p>
-            <strong>Rackspace</strong>&nbsp;has donated the server hosting and bandwidth for this project. Rackspace Cloud Servers were easy to set up and manage, and their "fanatical" support lives up to the  name. Visit <a href="http://www.rackspace.com/cloud/servers/">http://www.rackspace.com/cloud/servers</a> for more information.
+            <strong>Rackspace</strong>&nbsp;has donated the server hosting and bandwidth for this project. Rackspace Cloud Servers were easy to set up and manage, and their "fanatical" support lives up to the  name. Visit <a href="http://www.rackspace.com/cloud/servers/">Rackspace</a> for more information.
           </p>
           <p>
             <strong>Mailgun</strong>&nbsp;has donated the email sending for this project, and this 
             project would have never launched without their help. They took away the great pain of reliable email delivery with a simple, 
-            easy-to-use service that has been solid since day one. Visit <a href="http://www.mailgun.com/">http://www.mailgun.com</a> for 
+            easy-to-use service that has been solid since day one. Visit <a href="http://www.mailgun.com/">Mailgun</a> for 
             more information.
         </div>
       </div><!-- /.row -->

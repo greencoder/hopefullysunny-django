@@ -51,7 +51,7 @@ div.footer {
 
 p.error {
 	color: #FFF;
-	text-shadow: 2px 2px rgba(54,77,96,0.5);
+	text-shadow: 1px 1px rgba(54,77,96,0.5);
 }
 
 p.small {
@@ -62,7 +62,7 @@ p.small {
 p.lead {
 	color: #fff;
 	margin-top: 10px;
-	text-shadow: 2px 2px rgba(54,77,96,0.5);
+	text-shadow: 1px 1px rgba(54,77,96,0.5);
 }
 
 /* Jumbotron
@@ -134,9 +134,32 @@ button[type='submit'] {
 }
 
 #id_email {
-	width: 300px;
+	width: 240px;
 }
 
 #id_zip_code {
 	width: 125px;
+}
+
+/* Media Queries
+================================ */
+
+@media (max-width: 400px) {
+
+    #id_email {
+        width: 200px;
+    }
+
+    #id_zip_code {
+        width: 200px;
+    }
+
+    #main-logo {
+        width: 225px;
+    }
+
+    button[type='submit'] {
+        float: left;
+    }
+
 }
