@@ -31,4 +31,4 @@ class Command(BaseCommand):
 
         registration.fire_geocode_registration_task()
 
-        print "Done."
+        sys.exit("Done.")

@@ -9,7 +9,7 @@ class UpdateForm(forms.Form):
     email = forms.EmailField(
         error_messages={'required': 'An email address is required.'}, 
         widget=forms.TextInput(attrs={
-            'class':'form-control',
+            'class':'form-control gray',
             'placeholder': 'Email Address',
         })
     )
@@ -27,7 +27,7 @@ class UpdateDataForm(forms.Form):
     zip_code = forms.CharField(
         error_messages={'required': 'Your zip code is required.'}, 
         widget=forms.TextInput(attrs={
-            'class':'form-control',
+            'class':'form-control gray',
             'placeholder': 'Zip Code',
         })
     )
@@ -45,8 +45,9 @@ class RegistrationForm(forms.Form):
     email = forms.EmailField(
         error_messages={'required': 'An email address is required.'}, 
         widget=forms.TextInput(attrs={
-            'class':'form-control',
-            'placeholder': 'Email Address',
+            'class':'form-control blue',
+            'placeholder': 'Your Email Address',
+            'maxlength': '50',
         })
     )
     
@@ -55,6 +56,7 @@ class RegistrationForm(forms.Form):
         widget=forms.TextInput(attrs={
             'class':'form-control',
             'placeholder': 'Zip Code',
+            'maxlength': '5',
         })
     )
     

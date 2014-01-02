@@ -4,26 +4,39 @@
 
 {% block content %}
 
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body white-panel">
+	
+			<form action="" method="POST" class="form-inline" role="form">
 
-<div style="width: 500px; margin: 0 auto;">
+				{% if form.errors %}
+					<div class="alert alert-danger">
+					{% if form.email.errors %}<p>{{ form.email.errors.as_text|cut:"* " }}</p>{% endif %}
+					</div>
+				{% endif %}
 
-	<form action="" method="POST" class="form-signup">
+				<h1>Send Me an Update Link</h1>
 
-		{% if form.errors %}
-			<div class="alert alert-danger">
-			{% if form.email.errors %}<p>{{ form.email.errors.as_text|cut:"* " }}</p>{% endif %}
-			</div>
-		{% endif %}
+				<p class="dialog">
+					Enter your email address and we'll send you a link you can use to update
+					your preferences.
+				</p>
 
-		<h2>Send Me an Update Link</h2>
+				<div class="form-group {% if form.email.errors %}has-error{% endif %}">
+					{{ form.email }}
+				</div>
 
-		<span class="{% if form.email.errors %}has-error{% endif %}">{{ form.email }}</span>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default">Send Link</button>
+				</div>
 
-		<input type="submit" class="btn btn-lg btn-primary btn-block" value="Send Me a Link!">
+				{% csrf_token %}
 
-		{% csrf_token %}
+			</form>	
 
-	</form>	
-</div>
+		</div><!-- /.panel-body -->
+	</div><!-- /.panel -->
+</div><!-- .container -->
 
 {% endblock content %}

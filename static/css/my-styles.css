@@ -1,0 +1,142 @@
+/* Layout
+================================ */
+
+body {
+	background-color: #384E61;
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 1.8em;
+}
+
+div.faqs,
+div.oss {
+	background-color: #E8EAEE;
+}
+
+div.how,
+div.partners,
+div.credits {
+	background-color: #FFF;
+}
+
+div.footer {
+	color: #fff;
+}
+
+.content {
+	padding: 20px;
+}
+
+.content p {
+	line-height: 1.5;
+	margin-bottom: 20px;
+}
+
+.content h1 {
+	font-size: 1.4em;
+	font-weight: bold;
+	font-family: 'Alegreya Sans', sans-serif;
+	margin-bottom: 30px;
+}
+
+/* Text
+================================ */
+
+.white {
+	color: #FFF;
+}
+
+.white a {
+	color: #F7EA24;
+}
+
+p.error {
+	color: #FFF;
+	text-shadow: 2px 2px rgba(54,77,96,0.5);
+}
+
+p.small {
+	font-size: 0.8em;
+	text-shadow: 1px 1px rgba(54,77,96,0.5);
+}
+
+p.lead {
+	color: #fff;
+	margin-top: 10px;
+	text-shadow: 2px 2px rgba(54,77,96,0.5);
+}
+
+/* Jumbotron
+================================ */
+
+.jumbotron {
+  text-align: center;
+  padding-bottom: 30px;
+  padding-top: 25px;
+  border-top: 10px solid #384E61;
+  background-color: #6DA5DC;
+  margin-bottom: 0px;
+}
+
+/* Panel
+================================ */
+
+.panel {
+	max-width: 600px;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(84,133,180,0.7);
+    border: 0px;
+    border-radius: 12px;
+}
+
+.white-panel {
+    background-color: #FFF;
+    border-radius: 12px;
+    margin-top: 50px;
+    padding: 25px;
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+.white-panel h1 {
+    font-family: 'Alegreya Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.6em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.white-panel p.dialog {
+    margin-bottom: 20px;
+}
+
+/* Form and Input
+================================ */
+
+.form-inline {
+	margin-top: -5px;
+}
+
+.form-inline input {
+	margin-right: 10px;
+	border: 3px solid #69A0DA;
+	height: 38px;
+}
+
+.form-inline input.gray {
+    border: 1px solid #ccc;    
+    height: 34px;
+}
+
+
+button[type='submit'] {
+	font-family: 'Alegreya Sans', sans-serif;
+}
+
+#id_email {
+	width: 300px;
+}
+
+#id_zip_code {
+	width: 125px;
+}

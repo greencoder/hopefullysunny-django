@@ -1,32 +1,181 @@
 {% extends 'base.html' %}
 
-{% block title %}Signup{% endblock title %}
+{% block title %}Signup for Hopefully Sunny{% endblock title %}
+
+{% load staticfiles %}
 
 {% block content %}
+  <!-- Jumbotron -->
+  <div class="jumbotron">
 
-<div style="width: 500px; margin: 0 auto;">
+    <img src="{% static "images/hs_logo.png" %}" width="300" />
+    <p class="lead">Get a beautiful weather forecast delivered to your inbox every morning.</p>
 
-	<form action="" method="POST" class="form-signup">
+    <div class="container">
+      <div class="panel panel-default hidden-xs">
+        <div class="panel-body">
 
 		{% if form.errors %}
-			<div class="alert alert-danger">
-			{% if form.email.errors %}<p>{{ form.email.errors.as_text|cut:"* " }}</p>{% endif %}
-			{% if form.zip_code.errors %}<p>{{ form.zip_code.errors.as_text|cut:"* " }}</p>{% endif %}
-			</div>
-		{% endif %}
+          <p class="error">Please fix the fields marked in red.</p>
+        {% endif %}
 
-		<h2>Signing Up is Easy</h2>
+      	  <form action="" method="POST" class="form-inline">
+            <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+              {{ form.email }}
+            </div>
+            <div class="form-group {% if form.zip_code.errors %}has-error{% endif %}">
+                {{ form.zip_code }}
+            </div>  
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Sign Up</button>
+            </div> 
+    		{% csrf_token %}           
+          </form>
 
-		<span class="{% if form.email.errors %}has-error{% endif %}">{{ form.email }}</span>
-		<span class="{% if form.zip_code.errors %}has-error{% endif %}">{{ form.zip_code }}</span>
+        </div><!-- /panel-body -->
+      </div><!-- /panel -->
 
-		<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign Me Up!">
+      <p class="small white">
+        If you are already registered, you can <a href="{% url 'update' %}">update your preferences</a> 
+        at any time.
+      </p>
 
-		{% csrf_token %}
+    </div><!-- /Container -->
 
-		<p>Already signed up and want to <a href="{% url 'update' %}">update your preferences</a>?</p>
+  </div>
+  <!-- End Jumbotron -->
 
-	</form>	
-</div>
+  <!-- How it works -->
+  <div class="how content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-center">How It Works</h1>
+          <p>
+            Sign up using the form above. We'll send you an email with a link to confirm your subscription that you 
+            <strong>must</strong> click on before we can send you anything - we don't want someone getting signed up 
+            without their consent. 
+          </p>
+          <p>
+            Each morning, we'll send you an email that looks like <a href="images/sample_email.png">this</a>. It's completely 
+            text-based and uses picture fonts in the subject line and body that allow you to quickly see what's happening. It 
+            shows up nicely on both desktop and mobile devices.
+          </p>
+          <p>
+            You can change your location at any time using the link to modify your settings. For example, if you are going 
+            out of town for a couple days, you can change the city for your daily email and then easily change it back when you 
+            get home.
+          </p>
+        </div>        
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </div><!-- /.how -->          
 
+  <!-- FAQ -->
+  <div class="faqs content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-center">Frequently Asked Questions</h1>
+          <p>
+            <strong>This is free? What's the catch?</strong>&nbsp;&nbsp;
+            There is no catch. We build this service because we wanted it for ourselves 
+            and we found partners gracious enough to donate services to make it happen.
+          </p>
+          <p>
+            <strong>How many emails will I receive?</strong>&nbsp;&nbsp;
+            You will receive one email per day. The only other email you might receive is a note from us if something 
+            went wrong explaining what happened.
+          </p>
+          <p>
+            <strong>Can I get forcasts for more than one city?</strong>&nbsp;&nbsp;
+            To keep this service simple, we don't offer that. You are welcome to sign up for another city using a 
+            second email address.
+          </p>
+          <p>
+            <strong>You want me to give you my email address? Are you nuts?</strong>&nbsp;&nbsp;
+            We promise <em>never</em> to do anything with your email address that we wouldn't want done with our own.
+            This includes selling, renting, distributing, or any slimy use. We just want to send you a weather forecast 
+            and any emails related to outages our downtime.
+          </p>
+          <p>
+            <strong>How do I unsubscribe?</strong>&nbsp;&nbsp;
+            Every email you receive from us will have an unsubscribe link at the
+            bottom of it. If that doesn't work, <a href="mailto:hopefullysunnyapp@gmail.com">contact us</a> and we'll help 
+            you out. Unsubscribes take effect immediately - none of that infuriating "we'll remove you within a week" nonsense.
+          </p>
+          <p>
+            <strong>Where does the data come from?</strong>&nbsp;&nbsp;We get weather data from the good people at NOAA. Visit 
+            <a href="http://www.weather.gov">weather.gov</a> for more information.
+          </p>
+          <p>
+            <strong>Can I get a forecast for a location outside the U.S.?</strong>&nbsp;&nbsp;Unfortunately, not at this time. 
+            NOAA does a great job providing weather data for the United States but international data is much harder to come by.
+          </p>
+        </div>        
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </div><!-- /.faqs -->
+
+  <!-- Partners -->
+  <div class="partners content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-center">Our Partners</h1>
+          <p>This project would not be possible without the gracious donation of services by our partners who have provided hosting, bandwidth, and email sending to this open-source project.</p>
+          <p>
+            <strong>Rackspace</strong>&nbsp;has donated the server hosting and bandwidth for this project. Rackspace Cloud Servers were easy to set up and manage, and their "fanatical" support lives up to the  name. Visit <a href="http://www.rackspace.com/cloud/servers/">http://www.rackspace.com/cloud/servers</a> for more information.
+          </p>
+          <p>
+            <strong>Mailgun</strong>&nbsp;has donated the email sending for this project, and this 
+            project would have never launched without their help. They took away the great pain of reliable email delivery with a simple, 
+            easy-to-use service that has been solid since day one. Visit <a href="http://www.mailgun.com/">http://www.mailgun.com</a> for 
+            more information.
+        </div>
+      </div><!-- /.row -->
+    </div><!-- End main content-->
+  </div>
+
+  <!-- Open Source -->
+  <div class="oss content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-center">Open-Source Information</h1>
+          <p>
+            All code for this site and service are available under the MIT license at <a href="https://github.com/greencoder/hopefullysunny-django">Github</a>. We welcome feedback and pull requests for any problems with the codebase. The code is written in Python and Django, the database is PostgreSQL, and the server platform is Ubuntu Linux. Task queuing is done with Zero MQ. This page is built using the 
+            Boostrap framework.
+          </p>
+        </div>
+      </div><!-- /.row -->
+    </div><!-- End main content-->
+  </div>
+  <!-- Open Source -->
+
+  <!-- Credits -->
+  <div class="credits content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-center">Credits</h1>
+
+          <p class="text-center">The name, concept, and original design for Hopefully Sunny was created by Alan Johnson. He graciously allowed us to carry on his great idea.</p>
+
+        </div>
+      </div><!-- /.row -->
+    </div><!-- End main content-->
+  </div>
+  <!-- Credits -->
+
+  <!-- Footer -->
+  <div class="footer content">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p>&copy;2014 Hopefully Sunny</p>
+        </div>
+      </div><!-- /.row -->
+    </div><!-- End main content-->
+  </div>
 {% endblock content %}
