@@ -8,3 +8,4 @@ hopefullysunny/production.py
 hopefullysunny/development.py
 beanstalk.log
 PRODUCTION
+static_files/
