@@ -144,6 +144,22 @@ button[type='submit'] {
 /* Media Queries
 ================================ */
 
+@media (max-width: 768px) {
+
+    #id_email {
+        width: 100%;
+    }
+
+    #id_zip_code {
+        width: 100%;
+    }
+
+    button[type='submit'] {
+        float: none;
+    }
+
+}
+
 @media (max-width: 400px) {
 
     #id_email {

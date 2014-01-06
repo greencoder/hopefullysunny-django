@@ -2,7 +2,7 @@ Your forecast for {{ registration.city }}, {{ registration.state|default:registr
 {% for forecast in forecasts %}
 {{ forecast.date|date:"l" }}, {{ forecast.date|date:"F j" }}
 {{ forecast.code }}  {{ forecast.condition }}
-Low - High: {{ forecast.min_temp }}° - {{ forecast.max_temp }}°
+High: {{ forecast.max_temp }}°, Low: {{ forecast.min_temp }}°
 Chance of precipitation: {% spaceless %}
 {% ifequal forecast.pop_day forecast.pop_night %}
   {{ forecast.pop_day }}%

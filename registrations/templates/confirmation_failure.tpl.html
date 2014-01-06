@@ -1,24 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'base_panel.html' %}
 {% block title %}Uh oh.{% endblock %}
 
-{% block content %}
+{% block panel_content %}
 
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-body white-panel">
+	<h1>Houston, we have a problem...</h1>
+	
+	<p>
+		We couldn't find your registration. Would you like to try <a href="{% url 'signup' %}">signing up</a> again?
+	</p>
 
-        	<h1>Houston, we have a problem...</h1>
-        	
-        	<p>
-        		We couldn't find your registration. Would you like to try <a href="{% url 'signup' %}">signing up</a> again?
-        	</p>
+	<p>
+		If you continue to have trouble, <a href="mailto:hopefullysunnyapp@gmail.com">drop us a line</a> and we will do our best to help.
+	</p>
 
-        	<p>
-        		If you continue to have trouble, <a href="mailto:hopefullysunnyapp@gmail.com">drop us a line</a> and we will do our best to help.
-        	</p>
 
-        </div>
-    </div>	
-</div>
-
-{% endblock content %}
+{% endblock panel_content %}

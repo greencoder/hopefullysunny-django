@@ -1,22 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base_panel.html' %}
 {% block title %}Uh-Oh.{% endblock %}
 
-{% block content %}
+{% block panel_content %}
 
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-body white-panel">
+	<h1>Houston, we have a problem...</h1>
+	<p>
+		We checked but could not find your subscription.
+	</p>
+	<p>
+		Feel free to <a href="mailto:hopefullysunnyapp@gmail.com">drop us a line</a> and we'll help you out.
+	</p>
 
-        	<h1>Houston, we have a problem...</h1>
-        	<p>
-        		We checked but could not find your subscription.
-        	</p>
-        	<p>
-        		Feel free to <a href="mailto:hopefullysunnyapp@gmail.com">drop us a line</a> and we'll help you out.
-        	</p>
-
-        </div>
-    </div>	
-</div>
-
-{% endblock content %}
+{% endblock panel_content %}

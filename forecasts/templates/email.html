@@ -23,7 +23,7 @@
                 </td>
                 <td>
                   {{ forecast.condition }}<br />
-                  Low - High: {{ forecast.min_temp }}° - {{ forecast.max_temp }}°<br />
+                  High: {{ forecast.max_temp }}°, Low: {{ forecast.min_temp }}°<br />
                   Chance of precipitation:
                   {% ifequal forecast.pop_day forecast.pop_night %}
                   {{ forecast.pop_day }}%

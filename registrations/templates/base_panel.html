@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+body {
+    background-color: #6DA5DC;
+}
+</style>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body white-panel">
+            {% block panel_content %}{% endblock panel_content %}
+        </div><!-- /.panel-body -->
+    </div><!-- /.panel -->
+</div><!-- .container -->
+{% endblock content %}
