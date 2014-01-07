@@ -13,6 +13,7 @@ Chance of precipitation: {% spaceless %}
 {% endfor %}
 
 Forecast data provided by the National Weather Service: http://nws.noaa.gov
+Email sending graciously donated by Mailgun: http://www.mailgun.com
 
 -----
 
